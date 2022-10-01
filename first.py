@@ -76,3 +76,82 @@ else:										# jeśli obydwa się nie zgadzają, to:
 	print("x jest równe y")
 
 
+
+
+Loops:
+while 						#wykonywanie programu do czas aż...
+for x in range (1,21)		#wykonanie programu 20x
+
+break 						#koniec pętli
+pass
+
+
+
+#6 LISTS
+
+	#index 0   1   2    3        4     5		liczenie zaczynamy od 0
+mylist = [10, 20, 30, "string", True, 8.97]
+print(mylist) # wynik [10, 20, 30, 'string' True, 8.97]
+print(mylist[3]) # wynik 'string'
+print(mylist[:3]) # wynik [10, 20, 30]
+print(mylist[1:3]) # wynik [20, 30]
+print(mylist[-2]) # wynik True - 2 od końca, liczenie zaczynamy od prawej od 1
+
+mylist[3] = "anoter string" # zmiana 3 wpisu na "xxxx"
+print(mylist) # wynik [10, 20, 30, "another string", True, 8.97]
+
+for x in mylist:
+	print(x)
+
+x = [1, 2, 3]
+y = [4, 5, 6]
+print(x + y) # wynik [1, 2, 3, 4, 5, 6]
+print(x * 2) # wynik [1, 2, 3, 1, 2, 3]
+print(len(x)) # 3 - len/lenght
+print(max(x)) # 3 - podaje max wartość listy
+print(min(x)) # 1 - podaje min wartość listy
+x.append("new") # dodanie wartości na ostatnim miejscu listy
+print(x) # wynik [1, 2, 3, new]
+print(x.index("new")) # wynik 3 - zwraca index wartości o którą pytamy
+x.insert (2, "another one") # wynik [1, 2, another one, 3, new] - wstawienie wartość o indexie 2
+x.remove("another one") # wynik [1, 2, 3, new] - remove usuwa konkretną wartość
+x.pop(3) # wynik [1, 2, 3] - pop usuwa wartość o indexie 3
+x.sort() # układa od najmniejszego do największego i zapisuje liste w tej kolejnosci
+print(sorted(x)) # wyświetla listę od najmniejszej do największej wartości,
+y = sorted(x) # tworzy listę y z posortowanej listy x
+
+
+
+Tuples - Krotki:
+x = (1, 2, 3) # lista której nie można modyfikować
+
+# sposób na zmianę
+x = (1, 2, 3)
+x = list(x)
+x[2] = 10
+x = tuple(x)
+print(x)  # wynik (1, 2, 10)
+
+
+
+Dictionary:
+person = {"name":"Mark", "age":69, "gender": "male" }  # sposób tworzenia 
+print(person["name"])
+person{"newKey"} = "black" # dodawanie nowego wpisu
+
+print(person.items()) # wyświetla wszystko, tj. keys + values
+print(person.keys()) # wyświetla tylko keys, name, age, etc
+print(person.values()) # wyświetla wartości
+
+
+
+Membership Operators
+x = [1,2,3]
+print(2 in x) # wynik True
+print(7 in x) # wynik False
+
+	if type(x) is int:
+		print("x is int")
+	else:
+		print("x is not int")
+
