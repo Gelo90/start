@@ -56,12 +56,12 @@ not						# odwraca wynik 0 -> 1, 1 -> 0
 input - wartość jaką poda uzytkownik
 
 x = input("Enter number x: ")
-y - input("Enter number y: ")
+y = input("Enter number y: ")
 print (x + y) # x = 3, y = 3 , wynik 33, lub x = cycki, y = duże, wynik = cyckiduże
 
 
 x = int(input("Enter number x: "))
-y - int(input("Enter number y: "))		# zamiana inputa na int
+y = int(input("Enter number y: "))		# zamiana inputa na int
 print (x + y) # x = 3, y = 3, wynik 6, lub x = cycki, wynik = błąd
 
 
@@ -155,3 +155,27 @@ print(7 in x) # wynik False
 	else:
 		print("x is not int")
 
+
+
+## 7 Functions
+
+def helloworld():			# sposób tworzenia własnych algorytmów
+	print("hello world!")
+
+helloworld()				#uruchomienie algorytmu
+
+# przykład 1.
+def add(x=0, y=0):
+	return x + y
+
+result = add()
+print(result)
+
+#przykład 2.
+def mysum(*numbers):
+	result = 0 					#defaultowa liczba, może być 0
+	for number in numbers:
+		result += number
+	return result
+
+print(mysum(1, 2, 3, 50))
