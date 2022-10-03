@@ -179,3 +179,54 @@ def mysum(*numbers):
 	return result
 
 print(mysum(1, 2, 3, 50))
+
+
+## 8 Exception Handling
+
+try:			#tym sposobem możemy wymusić kontynuowanie działania kodu po wykryciu błędu
+	x = int(input("first number: "))
+	y = int(input("second number: "))
+	print (x / y)
+except:
+	print("there was an error!") # to zostanie wykonane w razie błędu
+
+# kolejny przykład
+
+try:			
+	x = int(input("first number: "))
+	y = int(input("second number: "))
+	print (x / y)
+except ValueError:				# w przypadku wykrycia błędu ValueError
+	print("Please enter a valid number")
+except ZeroDivisionError:
+	print("nie dziel chuju przez zero")
+	y = 1
+	print(x / y)
+finally:
+	print("Well done my nygga!")
+
+## 9 File Operation
+
+open #funkcja otwarcia pliku
+open('myfile.txt', 'r') # r - reading,
+file.close() # zamknięcie po wykonaniu operacji
+
+# drugi sposób na automatyczne zamknięcie pliku:
+file = open('myfile.txt', 'r')
+with open('file.txt', 'r') as f:  #with - funkcja otwarcia pliku, po zakończeniu autom. zamyka
+	# ALL OF MY CODE			  # as f: - zapisz jako f
+	pass
+
+file = open("file.txt", "w")	# w - nadpisanie tekstu
+file.write("Hello śmieciu!")
+file.flush # zapisuje zmiany w pliku bez jego zamykania, aby dalej z niego korzystać
+
+file = open("file.txt", "a") # a - dodanie na końcu tekstu
+
+from os import * # z modułu os zaimportuj * - czyli wszystko
+from os import rename, remove # z modułu zaimportuj tylko dwie funkcje
+mkdir("test") # make directory "test"
+chdir("test") #change directory - wejście do folderu test
+mkdir("newDir") # wynik - stworzenie NewDir w test
+rename("myfile.txt", "mynewfile") #zmiana nazwy pliku
+remove("mynewfile.txt") # usunięcie pliku
