@@ -230,3 +230,59 @@ chdir("test") #change directory - wejście do folderu test
 mkdir("newDir") # wynik - stworzenie NewDir w test
 rename("myfile.txt", "mynewfile") #zmiana nazwy pliku
 remove("mynewfile.txt") # usunięcie pliku
+
+## 10 String Functions
+
+text = "Hello World!"
+print(len(text)) # podaje długość stringu, tutaj: 12, liczy wszystko, spacje, , , ! etc.
+															
+													index:	0    1    2    3    4
+# o stringu możemy myśleć jako o liście. "Hello" = text = ["H", "e", "l", "l", "o"]
+print(text[2]) # wynik - "l"
+print(text[:6]) # wynik - "World"
+
+for letter in text:
+	print(letter) # wynik
+					H
+					e
+					l
+					l
+					o
+
+					W
+					o
+					r
+					l
+					d
+					!
+
+text = "Hello World! /nThis day is awsome!" # /n newline, tworzy nową linijkę
+print(text) # Wynik: Hello World!
+			#  		 This day is awsome!
+/t = tab
+/b = backspace
+/s = space
+
+name = input()
+age = int(input())
+print("My name is %s and I am %d years old" (name, age)) # %s - oczekiwany typ danych - string, %d - different type data
+print("My name is () and I am () years old!".format(name, age))
+
+
+text = "This is my text!"
+text = text.upper() # Wynik - "THIS IS MY TEXT"
+text = text.lower() # wynik - "this is my text"
+text = text.title() # wynik - "This Is My Text"
+text = text.swapcase() # wynik - "tHIS IS MY TEXT"
+print(text.count("i")) # wynik - 2
+print(text.count("t") + text.count("T")) # wynik - 3
+print(text.find("my")) # wynik 8
+
+separator = ";" # rozdziela wartości z listy wskazanym separatorem
+mylist = ["dupa", "cycki", "kot"]
+print(separator.join(mylist)) # wynik dupa;cycki;kot
+
+text = "raz dwa trzy raz"
+words = text.split("a") # rozdziela tekst po wystąpieniu wskazanego znaku
+print(words) # wynik - ['r', 'z dw', ' trzy r', 'z']
+print(text.replace("raz", "osiem")) # podmienia wskazane słowo na inne; wynik - osiem dwa trzy osiem
