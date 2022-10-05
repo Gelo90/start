@@ -286,3 +286,68 @@ text = "raz dwa trzy raz"
 words = text.split("a") # rozdziela tekst po wystąpieniu wskazanego znaku
 print(words) # wynik - ['r', 'z dw', ' trzy r', 'z']
 print(text.replace("raz", "osiem")) # podmienia wskazane słowo na inne; wynik - osiem dwa trzy osiem
+
+
+###### Intermediate Tutorial ######
+
+#1 Classes and Objects
+
+Pierwszy sposób:
+class Person:
+	def __init__(self):	
+		self.name = "Master"
+		self.age = 32
+
+person1 = Person()
+print(person1.name) # wynik - Master
+print(person1.age) # wynik - 32
+
+Drugi sposób:
+class Person:
+
+	amount = 0 		#początkowa liczba osób
+	def __init__(self, name, age, height):
+		self.name = name
+		self.age = age
+		self.height = height
+		person.amount += 1 			# doliczenie jednej osoby po jej utworzeniu
+
+	def __del__(self):				# definicja "co się stanie jak skasujemy obiekt"
+		person.amount -= 1 			# odjęcie jednej osoby po jej skasowaniu
+		print("Object deleted!")
+
+	def __str__ (self):				# kolejny sposób, gdy traktujemy obiekt jako string
+		return "Name: {}, Age: {}, Height: {}".format(self.name, self.age, self.height)
+
+person1 = Person("Master", 32, 175)
+print(person1.name)
+print(person1.age)
+print(person1.height)
+
+del person1		#kasowanie obiektu person1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
