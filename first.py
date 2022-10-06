@@ -326,6 +326,51 @@ print(person1.height)
 
 del person1		#kasowanie obiektu person1
 
+## 2 Inheritance - dziedziczenie
+
+class Worker(Person): #w nawiasie podajemy klasę-matkę 
+	def __init__(self, name, age, height, salary):
+		super(Worker, self).__init__(name, age, height) # super - przeniesienie definicji z parent-class
+		self.salary = salary # Person nie musi mieć salary, Worker tak
+
+	def __str__(self):
+		text = super(Worker, self).__str__()
+		text += ", Salary {}".format(self.salary)
+		return text
+
+	def calc_yearly_salary(self):
+		return self.salary * 12
+
+worker1 = Worker("Henry", 40, 176, 3000)
+print(worker1)
+print(worker1.calc_yearly_salary())
+
+# Overloading operators
+
+class Vector:
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
+
+	def __add__(self, other):
+		return Vector(self.x + other.x, self.y + other.y)
+
+	def __sub__(self, other):
+		return Vector(self.x - other.x, self.y - other.y)
+
+	def __str__(self):
+		return "X: {}, Y: {}".format(self.x, self.y)
+
+v1 = Vector(2,5)
+v2 = Vector(6,3)
+
+print("V1: ", v1)
+print("V2: ", v2)
+
+v3 = v1 + v2
+
+print("V3: ", v3)
+
 
 
 
