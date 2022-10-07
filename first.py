@@ -372,27 +372,69 @@ v3 = v1 + v2
 print("V3: ", v3)
 
 
+## Working with JSON! -JavaScript Object Notation
 
+import json # załaduj moduł json
 
+people_string = '''
+{
+	"people": [
+		{
+			"name": "John Smith",
+			"phone": "691-689-125",
+			"emails": ["js@gmail.com", "js2022@gmail.com"],
+			"has_license": false
+		},
+		{
+			"name": "John Doe",
+			"phone": "691-689-166",
+			"emails": ["jdsq@gmail.com", "jdfuckme@gmail.com"],
+			"has_license": true
+		}
+	]
+}
+'''
+data = json.loads(people_string) # zamienia dictionary na stringa
 
+print(data) # wynik - {'people': [{'name': 'John Smith', 'phone': '691-689-125', 'emails': ['js@gmail.com', 'js2022@gmail.com'], 'has_license': False}, {'name': 'John Doe', 'phone': '691-689-166', 'emails': ['jdsq@gmail.com', 'jdfuckme@gmail.com'], 'has_license': True}]}
 
+for person in data["people"]:
+	print(person["name"]) #wynik - John Smith, 
+						  #	       John Doe
 
+for person in data["people"]:
+	del person["phone"]		#kasuje keys i value "phone"
 
+new_string = json.dumps(data)
 
+print(new_string)
 
+##
 
+import json
 
+with open("states.json") as f:
+	data = json.load(f)
+for state in data['state']:
+	print(state['State'], state["Abbrev"])
+	del state["Code"]
 
+with open("new_states.json", "w") as f:
+	json.dump(data, f, indent=2)
 
+## JSON - ładowanie z URL
+import json
+from urllib.request import urlopen
 
+with urlopen("https://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json") as response:
+	source = response.read()
 
+data = json.loads(source)
+print(json.dumps(data, indent=2))
 
-
-
-
-
-
-
-
-
-
+print(len(data["list"]["resources"])) # liczenie wpisów w podliście resources
+ 
+ for item in data["list"]["resources"]:
+ 	name = item["resource"]["fields"]["name"] # podawanie ścieżki skąd ma pobierać zmienną name
+ 	price = item["resource"]["fields"]["price"] # jw
+ 	print(name, price) # wybranie z całej biblioteki zmiennych name i price
