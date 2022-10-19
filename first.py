@@ -14,6 +14,8 @@ int 3 6 -9 # wartość wyrażona w liczbach całkowitych+ -
 float 10.9 66.6 -69.60 # wartość wyrażona w liczbach z rozwinięciem dziesiętnym
 bool True False # de facto są tylko dwa stany, on/off, 0/1, Prawda lub Fałsz
 
+
+
 Variables # placeholders do późniejszego wykorzystania
 
 1.
@@ -31,6 +33,12 @@ print(x / 4) # da nam błąd próby dzielenia stringa przez int
 x = "120"
 X = int(x) #konwersja str na int, działa tylko w jeśli faktycznie str to liczba
 print(x / 4) #da nam 30
+
+3.
+x = "Python"
+y = "is"
+z = "awesome"
+print(x, y, z)
 
 
 Operators -   
@@ -53,6 +61,14 @@ and 					 10 < 20 and 20 < 30   wynik: true
 or 						 10 = 10 or 20 > 10		wynik: true
 not						# odwraca wynik 0 -> 1, 1 -> 0
 
+Operator		Name					Description
+& 				AND						Sets each bit to 1 if both bits are 1
+|				OR						Sets each bit to 1 if one of two bits is 1
+^				XOR						Sets each bit to 1 if only one of two bits is 1
+~ 				NOT						Inverts all the bits
+<<				Zero fill left shift	Shift left by pushing zeros in from the right and let the leftmost bits fall off
+>>				Signed right shift		Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
+
 input - wartość jaką poda uzytkownik
 
 x = input("Enter number x: ")
@@ -74,6 +90,12 @@ elif: x > y:								# jeśli pierwszy się nie zgadza, to sprawdza ten
 	print("x jest większe niż y")
 else:										# jeśli obydwa się nie zgadzają, to:
 	print("x jest równe y")
+
+## Przykład:
+
+txt = "The best things in life are free!"
+if "expensive" not in txt:
+  print("No, 'expensive' is NOT present.")
 
 
 
@@ -102,6 +124,13 @@ print(mylist) # wynik [10, 20, 30, "another string", True, 8.97]
 
 for x in mylist:
 	print(x)
+
+# unpacking a list:
+fruits = ["apple", "banana", "cherry"]
+x, y, z = fruits
+print(x) # wynik apple,
+print(y) # wynik banana,
+print(z) # wynik cherry,
 
 x = [1, 2, 3]
 y = [4, 5, 6]
@@ -180,6 +209,16 @@ def mysum(*numbers):
 
 print(mysum(1, 2, 3, 50))
 
+# przykład 3.
+def myfunc():
+  global x
+  x = "fantastic"
+
+myfunc()
+
+print("Python is " + x) #Normally, when you create a variable inside a function, that variable is local, and can only be used inside that function.
+	# To create a global variable inside a function, you can use the global keyword.
+
 
 ## 8 Exception Handling
 
@@ -231,7 +270,9 @@ mkdir("newDir") # wynik - stworzenie NewDir w test
 rename("myfile.txt", "mynewfile") #zmiana nazwy pliku
 remove("mynewfile.txt") # usunięcie pliku
 
-## 10 String Functions
+
+
+-------------   ## 10 String Functions
 
 text = "Hello World!"
 print(len(text)) # podaje długość stringu, tutaj: 12, liczy wszystko, spacje, , , ! etc.
@@ -266,7 +307,8 @@ print(text) # Wynik: Hello World!
 name = input()
 age = int(input())
 print("My name is %s and I am %d years old" (name, age)) # %s - oczekiwany typ danych - string, %d - different type data
-print("My name is () and I am () years old!".format(name, age))
+print("My name is () and I am () years old!".format(name, age)
+txt = "We are the so-called \"Vikings\" from the north." #The escape character allows you to use double quotes when you normally would not be allowed:
 
 
 text = "This is my text!"
@@ -278,6 +320,15 @@ print(text.count("i")) # wynik - 2
 print(text.count("t") + text.count("T")) # wynik - 3
 print(text.find("my")) # wynik 8
 
+#The strip() method removes any whitespace from the beginning or the end:
+		a = " Hello, World! "
+		print(a.strip()) # returns "Hello, World!"
+
+#The replace() method replaces a string with another string:
+		a = "Hello, World!"
+		print(a.replace("H", "J"))
+
+
 separator = ";" # rozdziela wartości z listy wskazanym separatorem
 mylist = ["dupa", "cycki", "kot"]
 print(separator.join(mylist)) # wynik dupa;cycki;kot
@@ -286,6 +337,18 @@ text = "raz dwa trzy raz"
 words = text.split("a") # rozdziela tekst po wystąpieniu wskazanego znaku
 print(words) # wynik - ['r', 'z dw', ' trzy r', 'z']
 print(text.replace("raz", "osiem")) # podmienia wskazane słowo na inne; wynik - osiem dwa trzy osiem
+
+
+#Use the format() method to insert numbers into strings:
+		age = 36
+		txt = "My name is John, and I am {}"
+		print(txt.format(age))
+
+quantity = 3
+itemno = 567
+price = 49.95
+myorder = "I want to pay {2} dollars for {0} pieces of item {1}."
+print(myorder.format(quantity, itemno, price))
 
 
 ###### Intermediate Tutorial ######
@@ -438,3 +501,39 @@ print(len(data["list"]["resources"])) # liczenie wpisów w podliście resources
  	name = item["resource"]["fields"]["name"] # podawanie ścieżki skąd ma pobierać zmienną name
  	price = item["resource"]["fields"]["price"] # jw
  	print(name, price) # wybranie z całej biblioteki zmiennych name i price
+
+
+
+## full XML procesing Guide in Python
+
+xml.sax # simple API for XML - można odczytać, używać, ale nie zmieniać
+xml.dom # Document Object Model
+
+
+import xml.sax
+
+class PeopleHandler(xml.sax.ContentHandler):
+
+	def startElement(self, name, attrs):
+		self.current = name
+		if name == "person":
+			print(f"-- Person {attrs["id"]} --")
+
+	def characters(self, content):
+		if self.current == "name":
+			self.name = content
+		elif self.current == "age":
+			self.age = content
+		elif self.current == "weight":
+			self.age = content
+		elif self.current == "height":
+			self.age = content
+
+	def endElement(self, name):
+		if self.current == "name":
+			print(f"Name: {self.name}")
+		elif self.current == "age":
+			print(f"Age: {self.age}")
+		elif self.current == "weight":
+			print(f"Weight: {self.weight}")
+		self.current = ""
