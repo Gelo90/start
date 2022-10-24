@@ -16,7 +16,7 @@ bool True False # de facto są tylko dwa stany, on/off, 0/1, Prawda lub Fałsz
 
 
 
-Variables # placeholders do późniejszego wykorzystania
+----------- Variables # placeholders do późniejszego wykorzystania
 
 1.
 x = 10
@@ -41,7 +41,7 @@ z = "awesome"
 print(x, y, z)
 
 
-Operators -   
+----------- Operators    
 												# można przyrównywać również str:
  + addition										# x = "hello"
  - substraction									# y = "hello"
@@ -69,6 +69,14 @@ Operator		Name					Description
 <<				Zero fill left shift	Shift left by pushing zeros in from the right and let the leftmost bits fall off
 >>				Signed right shift		Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
 
+
+-----------  Booleans
+
+	Almost any value is evaluated to True if it has some sort of content.
+	Any string is True, except empty strings.
+	Any number is True, except 0.
+	Any list, tuple, set, and dictionary are True, except empty ones.
+
 input - wartość jaką poda uzytkownik
 
 x = input("Enter number x: ")
@@ -82,7 +90,7 @@ print (x + y) # x = 3, y = 3, wynik 6, lub x = cycki, wynik = błąd
 
 
 
-Statements:
+----------- Statements:
 
 if x < y:									# pierwszy warunek, jeśli się zgadza, to print
 	print("x jest mniejsze niż y!")
@@ -93,6 +101,64 @@ else:										# jeśli obydwa się nie zgadzają, to:
 
 ## Przykład:
 
+a = 200
+b = 33
+if b > a:
+  print("b is greater than a")
+elif a == b:
+  print("a and b are equal")
+else:
+  print("a is greater than b")
+
+
+#One line if statement:
+if a > b: print("a is greater than b")
+
+#One line if else statement:
+a = 2
+b = 330
+print("A") if a > b else print("B")
+
+#One line if else statement, with 3 conditions:
+a = 330
+b = 330
+print("A") if a > b else print("=") if a == b else print("B")
+
+#The and keyword is a logical operator, and is used to combine conditional statements:
+a = 200
+b = 33
+c = 500
+if a > b and c > a:
+  print("Both conditions are True")
+
+#The or keyword is a logical operator, and is used to combine conditional statements:
+a = 200
+b = 33
+c = 500
+if a > b or a > c:
+  print("At least one of the conditions is True")
+
+#You can have if statements inside if statements, this is called nested if statements.
+#Example
+x = 41
+
+if x > 10:
+  print("Above ten,")
+  if x > 20:
+    print("and also above 20!")
+  else:
+    print("but not above 20.")
+
+
+#The pass Statement
+#if statements cannot be empty, but if you for some reason have an if statement with no content, put in the pass statement to avoid getting an error.
+a = 33
+b = 200
+
+if b > a:
+  pass
+
+
 txt = "The best things in life are free!"
 if "expensive" not in txt:
   print("No, 'expensive' is NOT present.")
@@ -100,7 +166,9 @@ if "expensive" not in txt:
 
 
 
-Loops:
+
+
+----------- Loops:
 while 						#wykonywanie programu do czas aż...
 for x in range (1,21)		#wykonanie programu 20x
 
@@ -109,7 +177,15 @@ pass
 
 
 
-#6 LISTS
+----------- LISTS
+
+Python Collections (Arrays)
+There are four collection data types in the Python programming language:
+
+List is a collection which is ordered and changeable. Allows duplicate members.
+Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
+Set is a collection which is unordered, unchangeable*, and unindexed. No duplicate members.
+Dictionary is a collection which is ordered** and changeable. No duplicate members.
 
 	#index 0   1   2    3        4     5		liczenie zaczynamy od 0
 mylist = [10, 20, 30, "string", True, 8.97]
@@ -119,8 +195,12 @@ print(mylist[:3]) # wynik [10, 20, 30]
 print(mylist[1:3]) # wynik [20, 30]
 print(mylist[-2]) # wynik True - 2 od końca, liczenie zaczynamy od prawej od 1
 
-mylist[3] = "anoter string" # zmiana 3 wpisu na "xxxx"
+mylist[3] = "another string" # zmiana 3 wpisu na "xxxx"
 print(mylist) # wynik [10, 20, 30, "another string", True, 8.97]
+
+thislist = ["apple", "banana", "cherry", "orange", "kiwi", "mango"]
+thislist[1:3] = ["blackcurrant", "watermelon"]
+print(thislist)
 
 for x in mylist:
 	print(x)
@@ -151,7 +231,7 @@ y = sorted(x) # tworzy listę y z posortowanej listy x
 
 
 
-Tuples - Krotki:
+----------- Tuples - Krotki:
 x = (1, 2, 3) # lista której nie można modyfikować
 
 # sposób na zmianę
@@ -162,19 +242,182 @@ x = tuple(x)
 print(x)  # wynik (1, 2, 10)
 
 
+#Convert the tuple into a list, add "orange", and convert it back into a tuple:
+thistuple = ("apple", "banana", "cherry")
+y = list(thistuple)
+y.append("orange")
+thistuple = tuple(y)
 
-Dictionary:
+#Create a new tuple with the value "orange", and add that tuple:
+thistuple = ("apple", "banana", "cherry")
+y = ("orange",)
+thistuple += y
+print(thistuple)
+
+#Convert the tuple into a list, remove "apple", and convert it back into a tuple:
+thistuple = ("apple", "banana", "cherry")
+y = list(thistuple)
+y.remove("apple")
+thistuple = tuple(y)
+
+#The del keyword can delete the tuple completely:
+thistuple = ("apple", "banana", "cherry")
+del thistuple
+print(thistuple) #this will raise an error because the tuple no longer exists
+
+#Unpacking a tuple:
+fruits = ("apple", "banana", "cherry")
+(green, yellow, red) = fruits
+print(green)
+print(yellow)
+print(red)
+#  The number of variables must match the number of values in the tuple, 
+#if not, you must use an asterisk to collect the remaining values as a list.
+
+#Using Asterisk*
+#If the number of variables is less than the number of values, you can add an * to the variable name and the values will be assigned to the variable as a list:
+#Example
+#Assign the rest of the values as a list called "red":
+
+fruits = ("apple", "banana", "cherry", "strawberry", "raspberry")
+(green, yellow, *red) = fruits
+print(green)
+print(yellow)
+print(red)
+
+thistuple = ("apple", "banana", "cherry")
+for x in thistuple:
+  print(x)
+
+#Print all items, using a while loop to go through all the index numbers:
+thistuple = ("apple", "banana", "cherry")
+i = 0
+while i < len(thistuple):
+  print(thistuple[i])
+  i = i + 1
+
+#Join two tuples:
+tuple1 = ("a", "b" , "c")
+tuple2 = (1, 2, 3)
+tuple3 = tuple1 + tuple2
+print(tuple3)
+
+#Multiply the fruits tuple by 2:
+fruits = ("apple", "banana", "cherry")
+mytuple = fruits * 2
+print(mytuple)
+
+
+
+----------- Dictionary: Dictionary items are ordered, changeable, and does not allow duplicates.
+Dictionary items are presented in key:value pairs, and can be referred to by using the key name.
+
 person = {"name":"Mark", "age":69, "gender": "male" }  # sposób tworzenia 
 print(person["name"])
 person{"newKey"} = "black" # dodawanie nowego wpisu
 
 print(person.items()) # wyświetla wszystko, tj. keys + values
 print(person.keys()) # wyświetla tylko keys, name, age, etc
-print(person.values()) # wyświetla wartości
+print(person.values()) # wyświetla wartości, tj. Mark, 69, male
+print(len(person)) # wyświetla ilość itemów w dict
+
+person["age"] = 18	# zmiana wpisu
+person.update({"age": 21}) #update wpisu
+
+#Check if "model" is present in the dictionary:
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+if "model" in thisdict:
+  print("Yes, 'model' is one of the keys in the thisdict dictionary")
+
+
+#Change the "year" to 2018:
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict["year"] = 2018
+
+#Update the "year" of the car by using the update() method:
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.update({"year": 2020})
+
+
+#Adding an item to the dictionary is done by using a new index key and assigning a value to it:
+thisdict = {
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict["color"] = "red"
+print(thisdict)
 
 
 
-Membership Operators
+----------- Sets --  Set items are unchangeable, but you can remove items and add new items.
+
+thisset = {"apple", "banana", "cherry"}
+print(thisset)
+
+
+myset = {"apple", "banana", "cherry"}		# zwraca typ klasy
+print(type(myset))		# <class 'set'>
+
+thisset = {"apple", "banana", "cherry"}		# drukowanie przy użyciu for
+for x in thisset:
+  print(x)
+
+thisset = {"apple", "banana", "cherry"}		# drukowanie przy warunku in
+print("banana" in thisset) # True
+
+thisset = {"apple", "banana", "cherry"}		# dodawanie wartości do setu
+thisset.add("orange")
+
+thisset = {"apple", "banana", "cherry"}		# łączenie setów
+mylist = ["kiwi", "orange"]
+thisset.update(mylist)
+
+thisset = {"apple", "banana", "cherry"}		# usuwanie wpisu
+thisset.discard("banana")
+
+thisset = {"apple", "banana", "cherry"}		# czyszczenie setu
+thisset.clear()
+
+thisset = {"apple", "banana", "cherry"}		# usuwanie setu
+del thisset
+
+set1 = {"a", "b" , "c"}						# połączenie setów w inny
+set2 = {1, 2, 3}
+set3 = set1.union(set2)
+
+add()							Adds an element to the set
+clear()							Removes all the elements from the set
+copy()							Returns a copy of the set
+difference()					Returns a set containing the difference between two or more sets
+difference_update()				Removes the items in this set that are also included in another, specified set
+discard()						Remove the specified item
+intersection()					Returns a set, that is the intersection of two other sets
+intersection_update()			Removes the items in this set that are not present in other, specified set(s)
+isdisjoint()					Returns whether two sets have a intersection or not
+issubset()						Returns whether another set contains this set or not
+issuperset()					Returns whether this set contains another set or not
+pop()							Removes an element from the set
+remove()						Removes the specified element
+symmetric_difference()			Returns a set with the symmetric differences of two sets
+symmetric_difference_update()	inserts the symmetric differences from this set and another
+union()							Return a set containing the union of sets
+update()						Update the set with the union of this set and others
+
+
+----------- Membership Operators
 x = [1,2,3]
 print(2 in x) # wynik True
 print(7 in x) # wynik False
@@ -186,7 +429,7 @@ print(7 in x) # wynik False
 
 
 
-## 7 Functions
+-----------  Functions
 
 def helloworld():			# sposób tworzenia własnych algorytmów
 	print("hello world!")
@@ -272,7 +515,7 @@ remove("mynewfile.txt") # usunięcie pliku
 
 
 
--------------   ## 10 String Functions
+------------- 10 String Functions
 
 text = "Hello World!"
 print(len(text)) # podaje długość stringu, tutaj: 12, liczy wszystko, spacje, , , ! etc.
@@ -350,7 +593,7 @@ price = 49.95
 myorder = "I want to pay {2} dollars for {0} pieces of item {1}."
 print(myorder.format(quantity, itemno, price))
 
-
+----------- ----------- ----------- ----------- ----------- ----------- 
 ###### Intermediate Tutorial ######
 
 #1 Classes and Objects
